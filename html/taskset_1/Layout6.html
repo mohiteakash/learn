@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <style>
+          .body{
+			background: #ff4931;
+			transition: all .5s;
+			padding: 1px;
+		}
+		.layout{
+			width: 70%;
+			margin: 100px auto;
+			background: lightcoral;
+			min-height: 400px;
+			
+			position: relative;
+			
+		}
+		.layout > div {
+			
+			position: relative;
+                         top: 150px;
+                         left: 100px;    
+			text-align: center;
+			color: #fff;
+		}
+		.layout button{
+			background: transparent;
+			
+			display: inline-block;
+			padding: 10px 30px;
+			border: 3px solid #fff;
+			border-radius: 50px;
+			background-clip: padding-box;
+			position: relative;
+			color: black;
+
+			
+		}
+            
+		
+		
+		.layout > .wrapper {
+			position: absolute;
+			width: 40%;
+			height: 120%;
+			top: -10%;
+			left: 5%;
+			background: white;
+			
+			
+			color: black;
+			overflow: hidden;
+		}
+		.layout .wrapper > form{
+			padding: 15px ;
+			width: 100%;
+			background: white;
+			width: 100%; 
+		}
+                    
+            
+            
+		
+                
+            
+        </style>
+    </head>
+    <body>
+<div class="body">
+		<div class="layout">
+			
+			<div class="rgstr-btn">
+				<p>Don't have an account?</p>
+				<button>Register</button>
+			</div>
+			<div class="wrapper">
+				<form id="login" name="name">
+					<h3>Login</h3>
+					<div class="mail">
+                                            <label>Mail or Username</label><br>
+						<input type="mail" name="">
+						
+					</div>
+					<div class="passwd">
+                                            <label>Password</label><br>
+						<input type="password" name="">
+						
+					</div>
+					<div class="submit">
+						<button style="position: relative;top:20px;border:2px solid #000;
+                                                        background: red;text:white;">
+                                                    Login</button>
+					</div>
+				</form>
+                        </div>
+                </div>
+                </body>		
+</html>
+
+	

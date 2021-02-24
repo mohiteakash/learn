@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+    <head>
+<title>Layout4</title>
+<style>
+   
+body {  
+     
+  display: grid;
+  grid-template-areas: 
+    "header header "
+    "nav article "
+    " nav footer";
+  grid-template-rows: 100px auto 100px;  
+  grid-template-columns: minmax(200px,3fr) 9fr;
+  
+  height: 100vh;
+  margin: 0;
+  }  
+
+  
+#pageHeader {
+  grid-area: header;
+  
+  background: linear-gradient(90deg,  purple 25% , palevioletred 85%);
+   border: 3px solid black;
+  }
+#pageFooter {
+  grid-area: footer;
+  background: lightseagreen;
+   border: 2px solid black;
+  }
+#mainArticle { 
+  grid-area: article;  
+  background: cornsilk;
+    border: 3px solid black;
+  }
+#mainNav { 
+  grid-area: nav; 
+  background: greenyellow;
+  background: linear-gradient(to bottom, greenyellow 83%, cadetblue 25%);
+  
+  border: 3px solid black;
+  }
+  
+
+</style>
+    </head>
+<body>
+  <header id="pageHeader">Header</header>
+  
+  <article id="mainArticle"><h1 style="text-align:center">Content</h1>
+      
+  </article>
+  
+  
+  <nav id="mainNav">Nav</nav>
+  <footer id="pageFooter">Footer</footer>
+  
+</body>
+</html>

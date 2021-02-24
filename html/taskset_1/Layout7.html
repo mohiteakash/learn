@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0; padding: 0; 
+box-sizing: border-box; text-align: center; 
+            }
+            main{
+ width: 75%; margin: 50px auto; 
+ 
+ display: grid; 
+ grid-template-rows: 60px 60px 60px 60px 160px;
+ grid-template-columns: repeat(8, 1fr);
+ grid-gap: 20px;
+ 
+}
+           .div1{ background-color: green; 
+                  grid-column:1/-1;
+            }
+           .div2{ background-color: blueviolet;
+                  grid-column:1/span 2; grid-row:2/span 2;
+           }
+           .div3{ background-color: blueviolet;
+                  grid-row: 2/span 2; grid-column:
+           }
+            .div4{ background-color: blueviolet; 
+                   grid-column: span 3
+            }
+           .div5{ background-color: red;
+           grid-row: span 2}
+           .div6{ background-color: lightgreen;}
+           .div7{ background-color: orange; 
+           grid-row:4/span 2 ;grid-column: span 3}
+           .div8{ background-color: orangered;
+           grid-row: span 3; grid-column: span 2;}
+                  
+            .div9{ background-color: red; 
+            grid-row: span 2;}
+            .div10{ background-color: gold; }
+            .div11{ background-color: green;
+            grid-column:span 2;}
+                   
+             .div12{ background-color: red;
+             grid-column:span 2;}
+              .div13{ background-color: blueviolet;
+              grid-row: span 2;}
+              .div14{ background-color: green; }
+               .div15{ background-color: red; }
+               .div16{ background-color: green;
+               grid-column: span 2;}
+                      .div17{ background-color: red;
+                      grid-column: span 3;}
+        </style>
+    </head>
+    <body>
+        <main>
+  <div class="div1"> box  </div>
+  <div class="div2"> box1 </div>
+  <div class="div3"> box2 </div>
+  <div class="div4"> box3 </div>
+  <div class="div5"> box4 </div>
+ 
+  <div class="div6">box5</div>
+  <div class="div7">box6</div>
+  <div class="div8">box7</div>
+  <div class="div9">box8</div>
+  <div class="div10">box9</div>
+  <div class="div11">box10</div>
+  <div class="div12">box11</div>
+  <div class="div13">box12</div>
+  <div class="div14">box13</div>
+  <div class="div15">box14</div>
+  <div class="div16">box15</div>
+  <div class="div17">box16</div>
+ 
+ </main>
+    </body>
+</html>
