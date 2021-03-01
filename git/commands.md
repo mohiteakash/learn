@@ -1,4 +1,4 @@
-# comonds
+# comands
 
 - git init //The git init command creates a new Git repository.
 - git status //show status of repository
