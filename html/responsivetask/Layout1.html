@@ -1,0 +1,67 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Demo Layout</title>
+<style>
+
+main{
+ width: 75%; margin: 50px auto; 
+ 
+ display: grid; color:black;
+ grid-template-rows: 60px 100px 100px 100px 60px;
+ grid-template-columns: repeat(3, 1fr) 200px;
+ grid-gap: 5px;
+ 
+}
+
+.header { 
+    grid-column:1/-1;
+    background-color:green;
+}
+.content {
+  
+    background-color:lightyellow;
+    grid-row: span 3; grid-column: span 3;
+    
+}
+.sidebar {
+    
+    background-color:lightgreen;
+    grid-row:2/ span 3; 
+    
+    
+     
+}
+.footer {
+
+    background-color:green;
+    grid-column:span 4;
+    
+}
+
+</style>
+</head>
+<body>
+ 
+    <main>
+ 
+    <div class="header">This is Header
+    </div>
+ 
+    <div class="content">This is Content
+    </div>
+     
+    <div class="sidebar">This is side bar
+    </div>
+     
+   
+     
+    <div class="footer">This is footer
+    </div>
+ 
+    </main>
+ 
+</body>
+</html>

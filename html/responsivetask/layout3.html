@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+ <head>
+<meta charset="utf-8">
+<title>layout 3</title>
+<style>
+ 
+  main{
+ width: 75%; margin: 50px auto; 
+ 
+ display: grid; color:black;
+ grid-template-rows: 60px 100px 100px 60px 60px;
+ grid-template-columns: repeat(5, 1fr);
+ grid-gap: 5px;
+}
+ 
+
+.Header {
+  grid-column:1/span 5;
+  background: gold;
+  
+  }
+.Footer {
+  grid-column:span 4;
+  background: gold;
+  
+  }
+.mainArticle { 
+  grid-column:span 4; grid-row: span 2;
+    background: gold;
+
+  }
+.sidebar { 
+   grid-row:2/-1;
+    background: gold;
+
+  }
+.Ads { 
+   grid-column:span 4;
+ background: gold; 
+  
+
+  } 
+
+</style>
+ </head>
+<main>
+  <div class="Header">Header</div>
+  <div class="mainArticle">Article</div>
+  <div class="sidebar">Nav</div>
+  <div class="Ads">Ads</div>
+  <div class="Footer">Footer</div>
+</main>
+</body>
+</html>
