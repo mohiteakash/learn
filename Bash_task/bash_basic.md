@@ -567,25 +567,11 @@ do
         if [ -f $all ]
         then
                 echo "f-  $all"
-        else [ -d $all ]
-
+        else 
+        
+        fi[ -d $all ]
+then
                 echo "d-  $all"
         fi
-
-done
-
-
-read file
-if [ -f "$file" ]
-then
-        echo "f-"
-else
-        if [ -d "$file" ]
-        then
-                echo "d-"
-        fi
 fi
-for all in `ls -R $file`
-do      
-        echo $file
-done    
+done
