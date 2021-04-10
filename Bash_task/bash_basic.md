@@ -1,9 +1,11 @@
 2. create directory "developing" and its parent directory using single command.
+```
 Ans:- akash@akash-Virtual-Machine:~$  mkdir -p Scripts/devloping
     akash@akash-Virtual-Machine:~/Scripts/developing$ pwd
 /home/akash/Scripts/developing
-
+```
 3. create "papers" and "sciData" inside its parent directory both using single command.
+```
 Ans:-akash@akash-Virtual-Machine:~$ mkdir -p research ./research/papers ./research/sciData
 akash@akash-Virtual-Machine:~$ ls
 a            Documents  html      project     research     simple.txt  Templates
@@ -12,37 +14,48 @@ Desktop      home       Pictures  random.txt  sharefolder  snap        Videos
 akash@akash-Virtual-Machine:~$ cd research/
 akash@akash-Virtual-Machine:~/research$ ls
 papers  sciData
-
+```
 
 4. cerate a empty file "dev.txt" inside developing directory.
+```
 Ans:-akash@akash-Virtual-Machine:~$ cd Scripts/developing/
     akash@akash-Virtual-Machine:~/Scripts/developing$ touch dev.txt
     akash@akash-Virtual-Machine:~/Scripts/developing$ ls
     dev.txt
-
+```
 5. use echo command to add some text to the "dev.txt" file. Use a command to show   the contents of "dev.txt" file.
+```
 Ans:-akash@akash-Virtual-Machine:~/Scripts/developing$ echo "hello world" > dev.txt
     akash@akash-Virtual-Machine:~/Scripts/developing$ cat dev.txt
     hello world
-
+```
 6. do the above instruction using command in single line. HINT: use pipe
+```
 Ans:-akash@akash-Virtual-Machine:~$ mkdir -p scripts/devloping | mkdir -p research ./research/papers ./research/sciData | touch dev.txt 
-
+```
 
 7. find all files starting with "bin" and ends with "xe".
-Ans:-akash@akash-Virtual-Machine:~$  find -name 'bin*'
+```
+Ans:-akash@akash-Virtual-Machine:~$ 
+ find . -type f -name "bin*" | find . -type f -name "*xe"
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-98c5e62d4d2ce1b256cc718e70af6232.code
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-7892486a01de832d86c094006e8c9daa.code
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-5f149bbc464abc43a37acedb30314297.code
-
+```
 
 8. list root and describe the usage/significance of each folder.
+```
 Ans:-akash@akash-Virtual-Machine:~$ ls /
 bin   dev  home  lib32  libx32      media  opt   root  sbin  srv  tmp  var
 boot  etc  lib   lib64  lost+found  mnt    proc  run   snap  sys  usr
 
 
+
+the root directory is /, not /root /root is the home directory of the root user
+```
+
 9. list /etc by file size.
+```
 Ans:-akash@akash-Virtual-Machine:~$ ls -lS /etc
 total 1140
 -rw-r--r--  1 root root   70174 Apr  8 14:00 ld.so.cache
@@ -277,7 +290,7 @@ lrwxrwxrwx  1 root root      18 Mar 20 11:44 printcap -> /run/cups/printcap
 -rw-r--r--  1 root root      13 Dec  5  2019 debian_version
 lrwxrwxrwx  1 root root      13 Dec 16 07:08 rmt -> /usr/sbin/rmt
 -rw-r--r--  1 root root      13 Mar 20 11:57 timezone
-
+,,,
 
 
 
@@ -287,6 +300,8 @@ lrwxrwxrwx  1 root root      13 Dec 16 07:08 rmt -> /usr/sbin/rmt
 
 
 10. list only files in /etc by modified date.
+```
+Ans:-
 akash@akash-Virtual-Machine:~$ ls -lt /etc
 total 1140
 -rw-r--r--  1 root root   42332 Apr  8 14:26 mailcap
@@ -521,10 +536,11 @@ drwxr-xr-x  2 root root    4096 Jun 26  2019 libpaper.d
 -rw-r--r--  1 root root     280 Jun 20  2014 fuse.conf
 -rw-r--r--  1 root root    2932 Apr  2  2013 protocols
 -rw-r--r--  1 root root     887 Apr  1  2013 rpc
-
+```
 
 
 11. create bash to test the input file is directory or file.
+```
 Ans:-
 #!/bin/bash
 
@@ -538,7 +554,38 @@ else
                 echo "the directory is exists"
         fi
 fi
-
+```
 
 
 12. create a bash script to list all files and folder of the provided input path and all its subdir in the following format
+
+#!/bin/bash
+read dir
+for all in `ls -R $dir`
+do
+        echo $all
+        if [ -f $all ]
+        then
+                echo "f-  $all"
+        else [ -d $all ]
+
+                echo "d-  $all"
+        fi
+
+done
+
+
+read file
+if [ -f "$file" ]
+then
+        echo "f-"
+else
+        if [ -d "$file" ]
+        then
+                echo "d-"
+        fi
+fi
+for all in `ls -R $file`
+do      
+        echo $file
+done    
