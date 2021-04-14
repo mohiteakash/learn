@@ -37,10 +37,19 @@ Ans:-akash@akash-Virtual-Machine:~$ mkdir -p scripts/devloping | mkdir -p resear
 7. find all files starting with "bin" and ends with "xe".
 ```
 Ans:-akash@akash-Virtual-Machine:~$ 
- find . -type f -name "bin*" | find . -type f -name "*xe"
+ find . -type f -name 'bin*'
+ 
+ ./find/binary
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-98c5e62d4d2ce1b256cc718e70af6232.code
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-7892486a01de832d86c094006e8c9daa.code
 ./.config/Code/CachedData/c185983a683d14c396952dd432459097bc7f757f/bindings-5f149bbc464abc43a37acedb30314297.code
+
+
+akash@akash-Virtual-Machine:~$
+find . -type f -name '*xe'
+
+./find/abcxe
+./find/xyzxe
 ```
 
 8. list root and describe the usage/significance of each folder.
@@ -55,8 +64,8 @@ the root directory is /, not /root /root is the home directory of the root user
 ```
 
 9. list /etc by file size.
-```
-Ans:-akash@akash-Virtual-Machine:~$ ls -lS /etc
+
+```Ans:-akash@akash-Virtual-Machine:~$ ls -lS /etc
 total 1140
 -rw-r--r--  1 root root   70174 Apr  8 14:00 ld.so.cache
 -rw-r--r--  1 root root   42332 Apr  8 14:26 mailcap
@@ -290,7 +299,7 @@ lrwxrwxrwx  1 root root      18 Mar 20 11:44 printcap -> /run/cups/printcap
 -rw-r--r--  1 root root      13 Dec  5  2019 debian_version
 lrwxrwxrwx  1 root root      13 Dec 16 07:08 rmt -> /usr/sbin/rmt
 -rw-r--r--  1 root root      13 Mar 20 11:57 timezone
-,,,
+```
 
 
 
@@ -300,8 +309,8 @@ lrwxrwxrwx  1 root root      13 Dec 16 07:08 rmt -> /usr/sbin/rmt
 
 
 10. list only files in /etc by modified date.
-```
-Ans:-
+
+```Ans:-
 akash@akash-Virtual-Machine:~$ ls -lt /etc
 total 1140
 -rw-r--r--  1 root root   42332 Apr  8 14:26 mailcap
@@ -540,8 +549,8 @@ drwxr-xr-x  2 root root    4096 Jun 26  2019 libpaper.d
 
 
 11. create bash to test the input file is directory or file.
-```
-Ans:-
+
+```Ans:-
 #!/bin/bash
 
 read file
@@ -559,19 +568,64 @@ fi
 
 12. create a bash script to list all files and folder of the provided input path and all its subdir in the following format
 
+```
 #!/bin/bash
-read dir
-for all in `ls -R $dir`
+dir=/home/akash/new
+
+
+
+for all in `ls  $dir`
 do
-        echo $all
-        if [ -f $all ]
+
+        newpath=$dir/$all
+        echo $newpath
+
+
+        if [ -f $newpath ]
         then
-                echo "f-  $all"
-        else 
-        
-        fi[ -d $all ]
-then
-                echo "d-  $all"
+                echo " f-  $all"
+
         fi
-fi
+
+        if [ -d $newpath ]
+        then
+                echo " d-  $all"
+        fi
+
+
+
+        for alls in `ls $newpath`
+        do
+
+                newpath1=$newpath/$alls
+
+                 if [ -f $newpath1 ]
+        then
+                echo " f-  $alls"
+
+        fi
+
+        if [ -d $newpath1 ]
+              then
+                echo " d-  $alls"
+        fi
+for alld in `ls $newpath1`
+do
+
+        newpath2=$newpath1/$alld
+
+          if [ -f $newpath2 ]
+        then
+                echo " f-  $alld"
+
+        fi
+
+        if [ -d $newpath2 ]
+        then
+                echo " d-  $alld"
+        fi
+
 done
+done
+done
+                                                                           
