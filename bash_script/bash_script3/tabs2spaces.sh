@@ -2,7 +2,7 @@
 
 for f in "$@"                  #$@ all data in f
 do
-    if [ ! -f $f ]		#using -f check file or not
+    if [ ! -f $f ]		#if not a file in $f
     then
       echo $f does not exist!   #$f is dir or anything print does not exisist
 
