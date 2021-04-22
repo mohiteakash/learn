@@ -216,8 +216,7 @@ sudo docker run -it --rm --name nginx2 -v nginx-vol:/nginx-vol1 nginx
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 /docker-entrypoint.sh: Configuration complete; ready for start up
-/#
-/#exit
+
 ```
 15. Now create a container `nginx3` using the volume `nginx-vol`. Use `-it` to connect to container and `-rm` so that the container get removed on exit.
 
@@ -231,8 +230,7 @@ sudo docker run -it --rm --name nginx3 -v nginx-vol:/nginx-vol1 nginx
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
 /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
 /docker-entrypoint.sh: Configuration complete; ready for start up
-/#
-/#exit
+
 
 ```
 
@@ -362,5 +360,89 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 all the content from the base images /var directory is copied into the volume
+
+```
+
+1. Create container NginxContainer1 and DataVolume1 using nginx image only at same time.
+
+```
+akash@akash-Virtual-Machine:~$ sudo docker run -d --name NginxContainer1 -v /home/akash/DataVolume1:/app nginx
+29bc3d3a1196528555883d08536d144a0a26a51b3d9cd63b68d9de1607bcb554
+akash@akash-Virtual-Machine:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+29bc3d3a1196        nginx               "/docker-entrypoint.…"   18 seconds ago      Up 18 seconds       80/tcp              NginxContainer1
+89ec8ffe817b        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine4
+b5a9f67206fe        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine3
+416cac6f1c15        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine2
+15fbd733ac7e        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine1
+akash@akash-Virtual-Machine:~$ sudo docker volume ls
+DRIVER              VOLUME NAME
+local               51865b36ece307919999c93249f7d595b34880d3138b6cb35031b8274264e2fc
+local               datavolume
+akash@akash-Virtual-Machine:~$ ls
+bash1.sh     cat          Desktop    final.txt    html      project     scripts      snap
+bash2.sh     com          dev.txt    find         Music     Public      sharefolder  Templates
+bash3.sh     DataVolume1  Documents  freedisk.sh  new       random.txt  simple.txt   test.txt
+bash_script  demo1.txt    Downloads  home         Pictures  research    smb.conf     Videos
+
+```
+
+2. Create a file `demo1.txt` with text `This is demo file for shared data between containers`.
+
+```
+akash@akash-Virtual-Machine:~$ sudo docker exec -t -i NginxContainer1 /bin/bash
+root@29bc3d3a1196:/# echo "This is demo file for shared data between container" > /DataVolume1/demo1.txt
+bash: /DataVolume1/demo1.txt: No such file or directory
+root@29bc3d3a1196:/# echo "This is demo file for shared data between container" > demo1.txt
+root@29bc3d3a1196:/# ls
+app  boot	dev		     docker-entrypoint.sh  home  lib64	mnt  proc  run	 srv  tmp  var
+bin  demo1.txt	docker-entrypoint.d  etc		   lib	 media	opt  root  sbin  sys  usr
+root@29bc3d3a1196:/# cat demo1.txt
+This is demo file for shared data between container
+root@29bc3d3a1196:/# 
+
+```
+
+3. Create a container `NginxContainer2`, and mount the volumes from `NginxContainer1`.
+
+```
+kash@akash-Virtual-Machine:~$ sudo docker run -d --name NginxContainer2 --volumes-from NginxContainer1 nginx
+ada8b3fc26b109aacc26e0c6b394192996f3db964711d02352e3a9394ed6736e
+akash@akash-Virtual-Machine:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+ada8b3fc26b1        nginx               "/docker-entrypoint.…"   16 seconds ago      Up 15 seconds       80/tcp              NginxContainer2
+29bc3d3a1196        nginx               "/docker-entrypoint.…"   7 minutes ago       Up 7 minutes        80/tcp              NginxContainer1
+89ec8ffe817b        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine4
+b5a9f67206fe        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine3
+416cac6f1c15        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine2
+15fbd733ac7e        alpine              "/bin/sh"                3 days ago          Up 3 days                               alpine1
+
+```
+4. While you are attech to the container `NginxContainer2`, Append some text in file `demo1.txt`.
+
+```
+akash@akash-Virtual-Machine:~$ sudo docker exec -t -i NginxContainer2 /bin/bash
+root@ada8b3fc26b1:/# echo "change in demo1 file" > demo1.txt
+root@ada8b3fc26b1:/# ls
+app  boot	dev		     docker-entrypoint.sh  home  lib64	mnt  proc  run	 srv  tmp  var
+bin  demo1.txt	docker-entrypoint.d  etc		   lib	 media	opt  root  sbin  sys  usr
+root@ada8b3fc26b1:/# exit
+exit
+
+```
+
+5. Check for the changes that were written to the `datavolume1` by `NginxContainer2` by restarting `NginxContainer1`. Is the data still present there?
+
+```
+akash@akash-Virtual-Machine:~$ sudo docker restart NginxContainer1
+NginxContainer1
+
+akash@akash-Virtual-Machine:~$ sudo docker exec -t -i NginxContainer1 /bin/bash
+root@29bc3d3a1196:/# cat /demo1.txt
+This is demo file for shared data between container
+change in demo1 file
+root@29bc3d3a1196:/# exit
+exit
+
 
 ```
