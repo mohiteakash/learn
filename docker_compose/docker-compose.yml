@@ -1,32 +1,41 @@
 version: '3'
 
 services:
-        postges:
-                image: nginx
+        db:
+                container_name: dockerpostgres
+                image: postgres
+                environment: 
+                        POSTGRES_PASSWORD: postgres
+                        POSTGRES_USER: postgres
+                        POSTGRES_DB: slack
                 volumes:
-                       - myvolume2:/home/akash
+                        - ./pgdata:/var/lib/postgresql/data
                 networks:
                        - nginx1
 
 
         mongo:
-                image: nginx
-                volumes:
-                       - myvolume2:/home/akash
-                networks:
-                       - nginx1
-
+                 container_name: dockermongo
+                 image: mongo
+                 environment:
+                         MONGO_INITDB_ROOT_USERNAME: root
+                         MONGO_INITDB_ROOT_PASSWORD: example
+                 volumes:
+                         - ./mongodata:/data/db
+                 networks:
+                         - nginx1
 
         minio:
-                image: nginx
+                container_name: dockermino
+                image: minio
+                environment:
+                        minioadmin: minioadmin
                 volumes:
-                       - myvolume2:/home/akash
+                        - ./minodata:/data
                 networks:
-                       - nginx1
-                expose: 
-                        - "8090"
+                        - nginx1
+                ports:
+                        - "9000:9000"
 networks:
         nginx1:
-
-volumes:
-        myvolume2:        
+   
