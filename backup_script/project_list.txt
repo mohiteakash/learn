@@ -1,0 +1,2 @@
+learning;http://akash_mohite:dRB-QpUqgZky3UieuC2t@gitlab.geomitra.local/learning/akshay_purohit.git
+learning;http://akash_mohite:dRB-QpUqgZky3UieuC2t@gitlab.geomitra.local/learning/aman_harde.git
